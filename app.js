@@ -27,10 +27,6 @@ require('dotenv').config();
 //DB connection
 connectDB()
 
-app.get('/', (req, res) => {
-    res.send('Root');
-})
-
 //validate Lisiting with Joi 
 const validateListing =(req,res,next)=>{
     let {err} = listingSchema.validate(req.body);
@@ -44,6 +40,11 @@ const validateListing =(req,res,next)=>{
 }
 
 //Routes with wrapAsync
+
+app.get('/', wrapAsync( async (req, res) => {
+    const allListing = await Listing.find({});
+    res.render('./listings/home.ejs', { allListing });
+}));
 
 //Index
 app.get('/listings', wrapAsync( async (req, res) => {
