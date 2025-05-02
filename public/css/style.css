@@ -58,7 +58,7 @@ body{
 }
 
 /* cards */
-.card{
+.listing-card, .home-card, .show-card{
     border: none !important;
     margin-bottom: 2rem;
 
