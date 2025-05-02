@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate');
-const MONGO_URL= 'mongodb+srv://ayshaamin680:AYsHa680@cluster0.nxmrvob.mongodb.net/nivaasi'
+const MONGO_URL = process.env.MONGO_URL;
 //const MONGO_URL = "mongodb://127.0.0.1:27017/nivaasi";
 const Listing = require("./models/listing.js")
 const wrapAsync = require('./utils/wrapAsync.js');
@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "../Frontend/public")));
+require('dotenv').config();
 
 //DB connection
 connectDB()
