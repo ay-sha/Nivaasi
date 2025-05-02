@@ -5,11 +5,13 @@ const mongoose = require('mongoose');
 const path = require('path');
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate');
-const MONGO_URL = "mongodb://127.0.0.1:27017/nivaasi";
+const MONGO_URL= 'mongodb+srv://ayshaamin680:AYsHa680@cluster0.nxmrvob.mongodb.net/nivaasi'
+//const MONGO_URL = "mongodb://127.0.0.1:27017/nivaasi";
 const Listing = require("./models/listing.js")
 const wrapAsync = require('./utils/wrapAsync.js');
 const ExpressError = require('./utils/ExpressError.js');
 const{ listingSchema } = require('./schema.js'); 
+const connectDB = require('./config/db.js'); 
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../Frontend/views'));
@@ -18,15 +20,9 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "../Frontend/public")));
 
-main()
-    .then((res) => {
-        console.log('MongoDB Connected')
-    }).catch((err) => {
-        console.log(err);
-    })
-async function main() {
-    await mongoose.connect(MONGO_URL);
-}
+//DB connection
+connectDB()
+
 app.get('/', (req, res) => {
     res.send('Root');
 })
@@ -66,8 +62,9 @@ app.get('/listings/:id', wrapAsync( async (req, res) => {
 //Create
 app.post('/listings', validateListing, wrapAsync(async (req, res, next) => {
     const newListing = new Listing(req.body.listing);
-    await newListing.save()
+    await newListing.save();
     res.redirect('/listings');
+
 }));
 
 //Edit
