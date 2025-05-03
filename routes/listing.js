@@ -6,6 +6,7 @@ const ExpressError = require('../utils/ExpressError.js');
 const Listing = require("../models/listing.js");
 const Review = require('../models/review.js');
 
+
 //validate Lisiting with Joi 
 const validateListing =(req,res,next)=>{
     let {err} = listingSchema.validate(req.body);

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.port || 3000; 
+const port = process.env.PORT || 3000;
 const path = require('path');
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate');
@@ -12,10 +12,12 @@ const listings = require('./routes/listing.js');
 const reviews = require('./routes/review.js');
 const session = require('express-session'); 
 const flash = require('connect-flash');
+const MongoStore = require('connect-mongo');
 const sessionOptions = {
     secret: 'mysecrectstring',
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
     cookie:{
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000 ,
