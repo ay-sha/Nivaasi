@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
 const path = require('path');
@@ -35,10 +36,16 @@ app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session(sessionOptions));
 app.use(flash());
-require('dotenv').config();
+
 
 //DB connection
 connectDB();
+
+app.use((req,res,next)=>{
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next(); 
+});
 
 //Root 
 app.get('/', wrapAsync( async (req, res) => {
@@ -46,11 +53,6 @@ app.get('/', wrapAsync( async (req, res) => {
     res.render('./listings/home.ejs', { allListing });
 })); 
 
-app.use((req,res,next)=>{
-    res.locals.success = req.flash('success');
-    res.locals.error = req.flash('error');
-    next(); 
-});
 
 //listings
 app.use('/listings', listings); 
