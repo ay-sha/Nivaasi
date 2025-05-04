@@ -18,6 +18,7 @@ const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
+const {isLoggedIn} = require('./middleware.js'); 
 const sessionOptions = {
     secret: 'mysecrectstring',
     resave: false,
