@@ -19,6 +19,21 @@ body {
     height: 2.5rem;
 }
 
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    margin-left: 10px; 
+}
+
+
+
 .nav-link {
     color: #222222 !important;
     position: relative;
@@ -133,26 +148,54 @@ body {
 .btn-cls {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-top: -1.5rem !important;
+    column-gap: 2rem;
 }
 
 .showedit-btn {
     background-color: #fe424d !important;
     color: #ebebeb !important;
     border: none !important;
-    width: 8rem !important;
+    width: 10rem !important;
 }
 
 .del-btn {
     background-color: #222222 !important;
     color: #ebebeb !important;
     border: none !important;
-    width: 8rem !important;
+    width: 10rem !important;
+}
+.review-submit
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.review-submit-btn{
+    width: 10rem;
+}
+.review-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.ratings{
+    display: flex;
+    gap: 10px;
 }
 
 .show-card {
     padding-left: 0;
     padding-right: 0;
+}
+
+.edit-prev-img img{
+    height: 32vh;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -179,5 +222,23 @@ body {
         color: #333;
         border-bottom: 2px solid #555;
         transition: border-bottom 0.5s ease, color 0.5s ease;
+    }
+    .show-img{
+        height: 40vh;
+    }
+    .btn-cls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -1.5rem !important;
+        column-gap: 2rem;
+        row-gap: 1rem;
+    }
+    .showedit-btn ,
+    .del-btn {
+        width: 11rem !important;
+    }
+    .author{
+        font-size: 1rem;
     }
 }

@@ -5,7 +5,7 @@
             <div class="col-8 offset-2">
                 <h2 style="text-align: center;">Edit this Listing</h2>
                 <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation"
-                    novalidate>
+                    novalidate enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" name="listing[title]" class="form-control" required
@@ -17,12 +17,6 @@
                         <textarea type="text" name="listing[description]" class="form-control"
                             required><%= listing.description %></textarea>
                             <div class="invalid-feedback">Briefly describe your space and what guests can expect.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Image Link</label>
-                        <input type="text" name="listing[image]" class="form-control" required
-                            value="<%= listing.image %>">
-                            <div class="invalid-feedback">Oops! Please add a valid image link.</div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-4">
@@ -44,7 +38,15 @@
                             value="<%= listing.location %>">
                             <div class="invalid-feedback">Add the exact location of your place</div>
                     </div>
-                    <button class="btn mb-3 mt-3 edit-btn">Edit Listing</button>
+                    <div class="edit-prev-img">
+                        <p>New look? Upload below.</p>
+                        <img src="<%= changedUrl %>" alt="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Upload Image</label>
+                        <input type="file" name="listing[image]" class="form-control" >
+                    </div>
+                    <button class="btn mb-4 mt-3 edit-btn">Edit Listing</button>
                 </form>
             </div>
         </div>
