@@ -78,7 +78,8 @@ app.use('/',userRouter);
 
 //default response
 app.all(/./, (req, res, next) => {
-    next(new ExpressError(404, "Page Not Found!"));
+    res.render('/listings');
+    res.flash('error',"Page not found!"); 
 });
 
 //custom middleware
