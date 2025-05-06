@@ -62,9 +62,10 @@ app.use((req,res,next)=>{
 
 
 //Root 
-// app.get('/', wrapAsync( async (req, res) => {
-//     res.render('/listings'); 
-// })); 
+app.get('/', wrapAsync( async (req, res) => {
+    const allListing = await Listing.find({});
+    res.render('./listings/home.ejs', { allListing }); 
+})); 
 
 //listings
 app.use('/listings', listingRouter); 
@@ -78,8 +79,7 @@ app.use('/',userRouter);
 
 //default response
 app.all(/./, (req, res, next) => {
-    res.render('/listings');
-    res.flash('error',"Page not found!"); 
+    next(new ExpressError(404, "Page Not Found!"));
 });
 
 //custom middleware
