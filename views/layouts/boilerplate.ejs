@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="/css/rating.css">
-    </head>
+    <link rel="stylesheet" href="/css/rating.css">
+    <!-- jQuery (Required) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- goMap Plugin -->
+    <script src="https://gomap.pro/js/jquery.gomap-1.3.3.min.js"></script>
+
+</head>
 
 
 <body>
@@ -24,7 +31,7 @@
 
         <div class="container">
             <%- include('../includes/flash.ejs') %>
-            <%- body %>
+                <%- body %>
         </div>
         <%- include('../includes/footer.ejs') %>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"

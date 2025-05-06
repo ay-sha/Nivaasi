@@ -31,7 +31,9 @@ body {
     align-items: flex-start; 
     margin-left: 10px; 
 }
-
+.navbar-nav{
+    margin-right: 1rem;
+}
 
 
 .nav-link {
