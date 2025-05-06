@@ -62,9 +62,9 @@ app.use((req,res,next)=>{
 
 
 //Root 
-app.get('/', wrapAsync( async (req, res) => {
-    res.render('/listings'); 
-})); 
+// app.get('/', wrapAsync( async (req, res) => {
+//     res.render('/listings'); 
+// })); 
 
 //listings
 app.use('/listings', listingRouter); 
