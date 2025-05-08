@@ -74,7 +74,7 @@ app.locals.toTitleCase = function(str) {
 //Root 
 app.get('/', wrapAsync( async (req, res) => {
     const allListing = await Listing.find({});
-    res.render('./listings/home.ejs', { allListing }); 
+    res.render('./listings/index.ejs', { allListing }); 
 })); 
 
 //listings
