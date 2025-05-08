@@ -40,66 +40,65 @@
             margin-top: 2rem;
             padding-right: 3rem !important;
         }
-
     </style>
     <div id="filters">
-        <div class="filter">
-            <div><i class="fa-solid fa-fire"></i></div>
-            <p>Trending</p>
-        </div>
-        <div class="filter">
+        <form method="GET" action="/listings/categories" id="filterForm">
+            <input type="hidden" name="category" id="categoryInput">
+        </form>
+
+        <div class="filter" data-category="rooms">
             <div>
                 <i class="fa-solid fa-bed"></i>
             </div>
             <p>Rooms</p>
         </div>
-        <div class="filter">
+        <div class="filter" data-category="iconiccities">
             <div class="icon-div">
                 <img src="/image/iconic.svg" alt="">
             </div>
             <p>Iconic Cities</p>
         </div>
-        <div class="filter">
+        <div class="filter" data-category="mountains">
             <div>
                 <i class="fa-solid fa-mountain-sun"></i>
             </div>
             <p>Mountains</p>
         </div>
-        <div class="filter">
+        <div class="filter" data-category="boats">
             <div>
                 <i class="fa-solid fa-sailboat"></i>
             </div>
             <p>Boats</p>
         </div>
-        <div class="filter">
+        <div class="filter" data-category="countryside">
             <div><i class="fa-solid fa-mountain-city"></i></div>
             <p>Country Side</p>
         </div>
-        <div class="filter">
+        <div class="filter" data-category="arctic">
             <div>
                 <i class="fa-solid fa-snowflake"></i>
             </div>
             <p>Arctic</p>
         </div>
-        <div class="filter">
+        <div class="filter" data-category="camping">
             <div>
                 <i class="fa-solid fa-campground"></i>
             </div>
             <p>Camping</p>
         </div>
-        <div class="filter">
+        <div class="filter" data-category="amazingpools">
             <div>
                 <i class="fa-solid fa-person-swimming"></i>
             </div>
             <p>Amazing Pools</p>
         </div>
-        <div class="filter">
+        <div class="filter" data-category="farms">
             <div class="icon-div">
                 <img src="/image/farms.svg" alt="">
             </div>
             <p>Farms</p>
         </div>
-        <div class="filter">
+        <div class="filter" data-category="island">
             <div class="icon-div">
                 <img src="/image/island.svg" alt="">
             </div>
@@ -111,6 +110,9 @@
         </div>
     </div>
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3 mb-3">
+        <%if(allListing&& allListing.length<=0){%>
+            <p>Nothing here right now— explore other categories to find your perfect stay.</p>
+        <%}%>
         <% for(let lst of allListing){ %>
             <a href="/listings/<%= lst._id %>" class="listing-link">
                 <div class="card col listing-card">
@@ -144,4 +146,14 @@
                 }
             }
         })
+        let allFilters = document.getElementsByClassName('filter');
+        console.log(allFilters);
+        for (let filter of allFilters) {
+            filter.addEventListener('click', (event) => {
+                let category = event.currentTarget.getAttribute('data-category');
+                document.getElementById('categoryInput').value = category;
+                document.getElementById('filterForm').submit(); 
+
+            })
+        }
     </script>

@@ -28,14 +28,14 @@
                         <div class="mb-3 col-md-8">
                             <label for="country" class="form-label">Country</label>
                             <input type="text" name="listing[country]" class="form-control" required
-                                value="<%= listing.country %>">
+                                value="<%= toTitleCase(listing.country) %>">
                                 <div class="invalid-feedback">Which country is your place in?</div>
                             </div>
                     </div>
                     <div class="mb-3">
                         <label for="location" class="form-label">Location</label>
                         <input type="text" name="listing[location]" class="form-control" required
-                            value="<%= listing.location %>">
+                            value="<%= toTitleCase(listing.location) %>">
                             <div class="invalid-feedback">Add the exact location of your place</div>
                     </div>
                     <div class="edit-prev-img">

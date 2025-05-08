@@ -1,4 +1,6 @@
 const Listing = require("../models/listing.js");
+const { cloudinary } = require('../cloudConfig.js');
+
 
 module.exports.index = async (req, res) => {
     const allListing = await Listing.find({});
@@ -65,6 +67,14 @@ module.exports.updateListing = async (req, res) => {
 module.exports.destroyListing = async (req, res) => {
     let { id } = req.params;
     let deltedListings = await Listing.findByIdAndDelete(id);
+    if (deltedListings?.image?.filename) {
+        await cloudinary.uploader.destroy(deltedListings.image.filename);
+    }
     req.flash('success', 'Listing Deleted!');
     res.redirect('/listings');
 }; 
+module.exports.filteredListings = async(req,res)=>{
+    let {category} = req.query; 
+    const allListing = await Listing.find({categories: category});
+    res.render('./listings/index.ejs',{allListing})
+}
