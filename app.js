@@ -1,5 +1,5 @@
-require('dotenv').config();
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
 const path = require('path');
@@ -18,20 +18,25 @@ const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
-const {isLoggedIn} = require('./middleware.js'); 
+const store = MongoStore.create({ 
+    mongoUrl: process.env.MONGO_URL,
+    touchAfter: 24*60*60  //sec
+});
+store.on('error',()=>{
+    console.log('Error in Mongo Session Store',err)
+});
+
 const sessionOptions = {
+    store,
     secret: 'mysecrectstring',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
     cookie:{
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000, //milisec
         maxAge: 7 * 24 * 60 * 60 * 1000 ,
         httpOnly: true
     }
 }
-
-
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
