@@ -1,45 +1,77 @@
 <% layout('/layouts/boilerplate') -%>
-        <div class="row mt-3">
-            <div class="col-8 offset-2">
-                <h2 style="text-align: center;">Create a Listing</h2>
-                <form method="POST" action="/listings" enctype="multipart/form-data" class="needs-validation" novalidate>
-                    <div class="mb-3">
-                        <label for="title" class="form-label" >Title</label>
-                        <input type="text" name="listing[title]" class="form-control" required
-                            placeholder="Add a Title">
-                            <div class="valid-feedback">Title Looks good!</div>
-                            <div class="invalid-feedback">Give your stay a catchy title. </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Select2 CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+            <h2 style="text-align: center;">Create a Listing</h2>
+            <form method="POST" action="/listings" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" class="form-control" required placeholder="Add a Title">
+                    <div class="valid-feedback">Title Looks good!</div>
+                    <div class="invalid-feedback">Give your stay a catchy title. </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea type="text" name="listing[description]" class="form-control" required
+                        placeholder="Enter Description"></textarea>
+                    <div class="invalid-feedback">Describe what makes this place special. </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" name="listing[price]" class="form-control" required placeholder="1500">
+                        <div class="invalid-feedback">Set a price per night.</div>
                     </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea type="text" name="listing[description]" class="form-control" required
-                            placeholder="Enter Description"></textarea>
-                            <div class="invalid-feedback">Describe what makes this place special. </div>
+                    <div class="mb-3 col-md-8">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" name="listing[country]" class="form-control" required
+                            placeholder="Bangladesh">
+                        <div class="invalid-feedback">Which country is your place in?</div>
                     </div>
-                    <div class="row">
-                        <div class="mb-3 col-md-4">
-                            <label for="price" class="form-label">Price</label>
-                            <input type="number" name="listing[price]" class="form-control" required placeholder="1500">
-                            <div class="invalid-feedback">Set a price per night.</div>
-                        </div>
-                        <div class="mb-3 col-md-8">
-                            <label for="country" class="form-label">Country</label>
-                            <input type="text" name="listing[country]" class="form-control" required
-                                placeholder="Bangladesh">
-                                <div class="invalid-feedback">Which country is your place in?</div>
-                        </div>
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="listing[location]" class="form-control" required
+                        placeholder="Mirpur,Dhaka">
+                    <div class="invalid-feedback">Add the exact location of your place</div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="listing[categories]" class="form-label">Select Items:</label>
+                        <select id="multiSelect" name="listing[categories][]" multiple="multiple" style="width: 20rem;">
+                            <option value="mountains">Mountains</option>
+                            <option value="rooms">Rooms</option>
+                            <option value="boats">Boats</option>
+                            <option value="countryside">Country Side</option>
+                            <option value="arctic">Arctic</option>
+                            <option value="camping">Camping</option>
+                            <option value="farms">Farms</option>
+                            <option value="island">Island</option>
+                            <option value="amazingpools">Amazing Pools</option>
+                        </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="location" class="form-label">Location</label>
-                        <input type="text" name="listing[location]" class="form-control" required
-                            placeholder="Mirpur,Dhaka">
-                            <div class="invalid-feedback">Add the exact location of your place</div>
-                    </div>
-                    <div class="mb-3">
+                    <div class="col-6">
                         <label for="image" class="form-label">Upload Image</label>
                         <input type="file" name="listing[image]" class="form-control" required>
                     </div>
-                    <button class="btn mb-3 mt-3 add-btn">Add Listing</button>
-                </form>
-            </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <button class="btn mb-4 mt-4 add-btn col-5">Add Listing</button>
+                </div>
+
+            </form>
         </div>
+    </div>
+    <script>
+        $('#multiSelect').select2({
+            placeholder: "Select one or more items"
+        });
+        $('#multiSelect').on('change', function () {
+            const selected = $(this).val();
+            console.log(selected);
+        });
+    </script>
