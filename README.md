@@ -1,6 +1,6 @@
 # 🏡 Nivaasi
 
-**Nivaasi** is a fully functional, Airbnb-inspired web application that allows users to discover and list unique stays around the world. Users can sign up, create and manage their listings, add reviews, explore properties using filters and search options, and enjoy a rich, responsive UI experience. The project is built using the **MVC architecture**, and includes **Joi server-side validation** for secure data handling.
+**Nivaasi** is a fully functional web application that allows users to discover and list unique stays around the world. Users can sign up, create and manage their listings, add reviews, explore properties using filters and search options, and enjoy a rich, responsive UI experience. The project is built using the **MVC architecture**, and includes **Joi server-side validation** for secure data handling.
 
 ---
 
