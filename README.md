@@ -42,18 +42,19 @@ Nivaasi follows the **Model-View-Controller (MVC)** pattern:
 
 ---
 
-## 🛠️ Tech Stack
+| Category            | Tools / Technologies                                                            |
+| ------------------- | ------------------------------------------------------------------------------- |
+| **Frontend**        | HTML, CSS, JavaScript, EJS, Bootstrap, Swiper.js                                |
+| **Backend**         | Node.js, Express.js                                                             |
+| **Templating**      | EJS (Embedded JavaScript templates)                                             |
+| **Database**        | MongoDB Atlas, Mongoose                                                         |
+| **Authentication**  | Passport.js (Local Strategy)                                                    |
+| **Authorization**   | Passport.js (Local Strategy)                                                    |
+| **Validation**      | Joi (Server-side schema validation), Bootstrap(Client Side Validation)          |
+| **Cloud Services**  | Cloudinary (image uploads), Render.com (deployment)                             |
+| **Architecture**    | MVC (Model-View-Controller)                                                     |
+| **Other Libraries** | Multer (file handling), Method-Override, Connect-Flash, Express-Session, Dotenv |
 
-| Category       | Tools/Technologies                          |
-|----------------|---------------------------------------------|
-| **Frontend**   | HTML, CSS, JavaScript, EJS, Swiper.js       |
-| **Backend**    | Node.js, Express.js                         |
-| **Database**   | MongoDB Atlas, Mongoose                     |
-| **Authentication** | Passport.js (local strategy)            |
-| **Validation** | Joi (for server-side validation)            |
-| **File Upload**| Cloudinary                                  |
-| **Deployment** | Render.com                                  |
-| **Architecture** | MVC Pattern                              |
 
 ---
 
@@ -166,6 +167,3 @@ Listing Details
 **Aysha Akter Sumi**
 ---
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
