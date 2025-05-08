@@ -78,3 +78,26 @@ module.exports.filteredListings = async(req,res)=>{
     const allListing = await Listing.find({categories: category});
     res.render('./listings/index.ejs',{allListing})
 }
+module.exports.searchListing = async (req, res) => {
+    let { filterBy, query } = req.query;
+    query = query.toLowerCase();
+    console.log(filterBy, query);
+    if (filterBy === 'country') {
+        const allListing = await Listing.find({
+            country: { $regex: query, $options: "i" }
+        });
+        console.log(allListing)
+        res.render('./listings/index.ejs', { allListing })
+    }
+    else {
+        const keywords = query.split(" ").filter(Boolean);
+        const regexConditions = keywords.map(word => ({
+            location: { $regex: word, $options: "i" }
+        }));
+        const allListing = await Listing.find({
+            $or: regexConditions
+        });
+        console.log(allListing)
+        res.render('./listings/index.ejs', { allListing })
+    }
+}; 

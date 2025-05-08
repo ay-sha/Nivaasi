@@ -17,29 +17,7 @@ router.route('/')
 //New
 router.get('/new', isLoggedIn, listingController.renderNewForm);
 router.get('/categories', validCategories, wrapAsync(listingController.filteredListings))
-router.get('/search', async (req, res) => {
-    let { filterBy, query } = req.query;
-    query = query.toLowerCase();
-    console.log(filterBy, query);
-    if (filterBy === 'country') {
-        const allListing = await Listing.find({
-            country: { $regex: query, $options: "i" }
-        });
-        console.log(allListing)
-        res.render('./listings/index.ejs', { allListing })
-    }
-    else {
-        const keywords = query.split(" ").filter(Boolean);
-        const regexConditions = keywords.map(word => ({
-            location: { $regex: word, $options: "i" }
-        }));
-        const allListing = await Listing.find({
-            $or: regexConditions
-        });
-        console.log(allListing)
-        res.render('./listings/index.ejs', { allListing })
-    }
-})
+router.get('/search', wrapAsync(listingController.searchListing));
 
 router.route('/:id')
     .get(wrapAsync(listingController.showListing))
